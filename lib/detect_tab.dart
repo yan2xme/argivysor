@@ -5,18 +5,16 @@ import 'package:tflite_v2/tflite_v2.dart'; // Import TFLite library
 import 'dart:io';
 import 'dart:developer' as devtools;
 import 'detection_result.dart';
-import 'plant_library.dart';
+import 'plant_library.dart'; // For DiseaseRepository
 
 class DetectTab extends StatefulWidget {
   const DetectTab({super.key});
 
   @override
-  _DetectTabState createState() => _DetectTabState();
-
-  void handleImage(BuildContext context, XFile image) {}
+  DetectTabState createState() => DetectTabState();
 }
 
-class _DetectTabState extends State<DetectTab> {
+class DetectTabState extends State<DetectTab> {
   final ImagePicker _picker = ImagePicker();
   bool _isLoading = false;
 
@@ -26,6 +24,7 @@ class _DetectTabState extends State<DetectTab> {
     _loadModel();
   }
 
+  // Load the TFLite model
   Future<void> _loadModel() async {
     try {
       String? res = await Tflite.loadModel(
@@ -41,6 +40,7 @@ class _DetectTabState extends State<DetectTab> {
     }
   }
 
+  // Method to pick an image from the specified source
   void _pickImage(BuildContext context, ImageSource source) async {
     try {
       final XFile? image = await _picker.pickImage(source: source);
@@ -54,8 +54,10 @@ class _DetectTabState extends State<DetectTab> {
         _isLoading = true;
       });
 
-      // Perform inference
-      await _classifyImageRunModelOnImage(File(image.path), context);
+      // Perform image classification
+      if (mounted) {
+        await _classifyImageRunModelOnImage(File(image.path), context);
+      }
     } catch (e) {
       devtools.log("Error picking image: $e");
       setState(() {
@@ -64,6 +66,7 @@ class _DetectTabState extends State<DetectTab> {
     }
   }
 
+  // Method to classify the image using the loaded TFLite model
   Future<void> _classifyImageRunModelOnImage(
       File image, BuildContext context) async {
     try {
@@ -82,6 +85,7 @@ class _DetectTabState extends State<DetectTab> {
         setState(() {
           _isLoading = false;
         });
+        _showNoDetectionDialog(context);
         return;
       }
 
@@ -92,23 +96,22 @@ class _DetectTabState extends State<DetectTab> {
           String detectedDisease = recognitions[0]['label'].toString();
           double confidence = (recognitions[0]['confidence'] * 100);
 
+          // Fetch disease details from the repository
+          DiseaseRepository.getDiseaseByName(detectedDisease);
+
           // Navigate to DetectionResult screen with the result
-          Disease? diseaseDetails =
-              PlantLibrary.getDiseaseByName(detectedDisease);
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DetectionResult(
-                diseaseName: detectedDisease,
-                accuracy: confidence,
-                imagePath: image.path,
-                treatments:
-                    diseaseDetails?.treatments ?? 'Information unavailable',
-                preventiveMeasures: diseaseDetails?.preventiveMeasures ??
-                    'Information unavailable',
+          if (mounted) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetectionResult(
+                  diseaseName: detectedDisease,
+                  accuracy: confidence,
+                  imagePath: image.path, // User's photo path
+                ),
               ),
-            ),
-          );
+            );
+          }
         }
         _isLoading = false;
       });
@@ -117,7 +120,50 @@ class _DetectTabState extends State<DetectTab> {
       setState(() {
         _isLoading = false;
       });
+      _showErrorDialog(context, "An error occurred during classification.");
     }
+  }
+
+  // Display a dialog when no disease is detected
+  void _showNoDetectionDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('No Disease Detected'),
+          content: const Text('The system could not detect any disease.'),
+          actions: [
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // Display an error dialog
+  void _showErrorDialog(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Error'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -132,12 +178,22 @@ class _DetectTabState extends State<DetectTab> {
                   icon: const Icon(Icons.camera_alt),
                   label: const Text('Take Photo'),
                   onPressed: () => _pickImage(context, ImageSource.camera),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 70, vertical: 15),
+                    textStyle: const TextStyle(fontSize: 18),
+                  ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 40),
                 ElevatedButton.icon(
                   icon: const Icon(Icons.photo_library),
                   label: const Text('Choose from Gallery'),
                   onPressed: () => _pickImage(context, ImageSource.gallery),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 35, vertical: 15),
+                    textStyle: const TextStyle(fontSize: 18),
+                  ),
                 ),
               ],
             ),

@@ -62,15 +62,15 @@ class _SplashScreenState extends State<SplashScreen>
             children: [
               Image.asset(
                 'assets/logo.png', // Your logo/image in assets folder
-                height: 150, // Height of the image
-                width: 150, // Width of the image
+                height: 300, // Height of the image
+                width: 300, // Width of the image
               ),
               const SizedBox(height: 20),
               const Text(
                 'AgriVysor', // App name
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 30,
+                  fontSize: 60,
                   fontWeight: FontWeight.bold,
                 ),
               ),
