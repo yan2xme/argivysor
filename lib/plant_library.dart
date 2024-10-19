@@ -111,7 +111,7 @@ class PlantLibraryState extends State<PlantLibrary> {
                             Container(
                               width: 100,
                               height: 100,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 gradient: LinearGradient(
                                   colors: [
                                     Colors.transparent,
@@ -120,7 +120,7 @@ class PlantLibraryState extends State<PlantLibrary> {
                                   ],
                                   begin: Alignment.centerLeft,
                                   end: Alignment.centerRight,
-                                  stops: const [
+                                  stops: [
                                     0.5,
                                     1.0
                                   ], // Increase feather effect to make it blend seamlessly
