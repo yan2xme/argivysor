@@ -1,0 +1,32 @@
+Banana Yellow Sigatoka
+Banana Cordana
+Banana Healthy
+Banana Insect Pest
+Banana Moko
+Banana Mosaic
+Banana Panama
+Coconut Bud Root Dropping
+Coconut Bud Rot
+Coconut Catterpillar
+Coconut Catterpillars Spot
+Coconut Grayleaf Spot
+Coconut Leaf Rot
+Coconut Stem Bleeding
+Coconut Fruit Healthy
+Coconut Fruit Infected
+Corn Cercospora Leaf Spot
+Corn Common Rust
+Corn Healthy
+Corn Northern Leaf Blight
+Pineapple Crown Rot
+Pineapple Fruit Fasciation
+Pineapple Fruit Rot
+Pineapple Healthy
+Pineapple Mealybug Wilt
+Pineapple Multiple Crop Disorder
+Pineapple Root Rot
+Sugarcane Healthy
+Sugarcane Mosaic Virus
+Sugarcane Red Rot
+Sugarcane Rust
+Sugarcane Yellow
