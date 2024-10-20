@@ -98,11 +98,14 @@ class DetectionResult extends StatelessWidget {
                             );
                             return;
                           }
+                          // Navigate to DiseaseDetails and pass both disease and imagePath
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => DiseaseDetails(
                                 disease: diseaseDetails,
+                                userImagePath:
+                                    imagePath, // Pass the imagePath here
                               ),
                             ),
                           );

@@ -1,14 +1,14 @@
-// disease_detail.dart
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:classifier/plant_library.dart'; // Import Disease model
+import 'package:classifier/pages/home_page.dart'; // Import HomePage for navigation
 
 class DiseaseDetails extends StatelessWidget {
   final Disease disease;
   final String? userImagePath;
 
   const DiseaseDetails({
-    super.key, // Use super.key for cleaner constructor
+    super.key,
     required this.disease,
     this.userImagePath,
   });
@@ -61,7 +61,6 @@ class DiseaseDetails extends StatelessWidget {
 
   // Function to build the disease image (asset or file)
   Widget _buildDiseaseImage() {
-    // Display the user-captured image if available, else show the reference image
     if (userImagePath != null && userImagePath!.isNotEmpty) {
       return Image.file(
         File(userImagePath!),
@@ -229,6 +228,26 @@ class DiseaseDetails extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 20),
+
+            // Chat more with AI button
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomePage(
+                        disease: disease, // Pass the disease object
+                        userImagePath:
+                            userImagePath, // Pass the user-captured image path
+                      ),
+                    ),
+                  );
+                },
+                child: const Text('Chat More with AI About the Disease'),
+              ),
+            )
           ],
         ),
       ),

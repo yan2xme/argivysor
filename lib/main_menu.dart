@@ -1,9 +1,7 @@
-// lib/main_menu.dart
-
 import 'package:flutter/material.dart';
-import 'detect_tab.dart'; // Updated import path
-import 'plant_library.dart'; // Updated import path
-import 'pages/home_page.dart'; // Import HomePage which contains the GeminiChatbot
+import 'detect_tab.dart'; // Import DetectTab
+import 'plant_library.dart'; // Import PlantLibrary
+import 'pages/home_page.dart'; // Import HomePage (GeminiChatbot)
 
 class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
@@ -21,11 +19,21 @@ class MainMenuState extends State<MainMenu>
   late final AnimationController _animationController;
   late final Animation<Offset> _slideAnimation;
 
+  // Create a mock disease for the HomePage
+  final Disease mockDisease = Disease(
+    name: 'Mock Disease',
+    imagePath: 'assets/mock_disease.png',
+    severity: 'low',
+    treatments: ['Treatment 1', 'Treatment 2'],
+    preventiveMeasures: ['Preventive Measure 1', 'Preventive Measure 2'],
+    description: 'This is a mock disease for testing.',
+  );
+
   // Updated _widgetOptions list with HomePage included
-  static final List<Widget> _widgetOptions = <Widget>[
+  late final List<Widget> _widgetOptions = <Widget>[
     const DetectTab(), // Index 0
     const PlantLibrary(), // Index 1
-    const HomePage(), // Index 2 (Chatbot)
+    HomePage(disease: mockDisease), // Index 2 (Chatbot) with mock disease
   ];
 
   @override
