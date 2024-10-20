@@ -10,20 +10,15 @@ project 'Runner', {
   'Release' => :release,
 }
 
-def flutter_root
-  generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
-  unless File.exist?(generated_xcode_build_settings_path)
-    raise "#{generated_xcode_build_settings_path} must exist. If you're running pod install manually, make sure flutter pub get is executed first"
-  end
+# Define the path to the Flutter SDK
+flutter_root = ENV['FLUTTER_ROOT']
 
-  File.foreach(generated_xcode_build_settings_path) do |line|
-    matches = line.match(/FLUTTER_ROOT\=(.*)/)
-    return matches[1].strip if matches
-  end
-  raise "FLUTTER_ROOT not found in #{generated_xcode_build_settings_path}. Try deleting Generated.xcconfig, then run flutter pub get"
+unless flutter_root && File.exist?(File.join(flutter_root, 'bin', 'flutter'))
+  raise 'Flutter SDK not found. Please ensure FLUTTER_ROOT is set correctly.'
 end
 
-require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
+# Load the Flutter pod helper script
+load File.join(flutter_root, 'packages', 'flutter_tools', 'bin', 'podhelper.rb')
 
 target 'Runner' do
   # Enables static linking to resolve module issues
@@ -31,20 +26,18 @@ target 'Runner' do
 
   # Integrate Flutter dependencies
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
-
-  # Prevents embedding Flutter frameworks multiple times
-  flutter_post_install do |installer|
-    installer.pods_project.targets.each do |target|
-      target.build_configurations.each do |config|
-        config.build_settings['ENABLE_BITCODE'] = 'NO'
-      end
-    end
-  end
 end
 
-# Post-install processing for additional settings
 post_install do |installer|
+  flutter_post_install(installer)
+
+  # Additional settings if needed
   installer.pods_project.targets.each do |target|
-    flutter_additional_ios_build_settings(target)
+    target.build_configurations.each do |config|
+      # Disable bitcode if necessary
+      config.build_settings['ENABLE_BITCODE'] = 'NO'
+      # Set Swift version if required
+      config.build_settings['SWIFT_VERSION'] = '5.0'
+    end
   end
 end

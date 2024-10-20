@@ -2,3 +2,4 @@
 # Obfuscation related
 
 # Android Studio will place build artifacts here
+ios/Flutter/Generated.xcconfig

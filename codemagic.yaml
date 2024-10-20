@@ -17,28 +17,34 @@ workflows:
           flutter clean
 
       # Step 2: Get Flutter dependencies
+      - name: Get Flutter dependencies
         script: |
           flutter pub get
 
-      # Step 3: Remove existing Pods and Podfile.lock (optional but recommended)
+      # Step 3: Print FLUTTER_ROOT for debugging
+      - name: Print FLUTTER_ROOT
+        script: |
+          echo "FLUTTER_ROOT is set to: $FLUTTER_ROOT"
+
+      # Step 4: Remove existing Pods and Podfile.lock (optional but recommended)
       - name: Remove Pods and Podfile.lock
         script: |
           rm -rf ios/Pods
           rm -f ios/Podfile.lock
 
-      # Step 4: Update CocoaPods repository
+      # Step 5: Update CocoaPods repository
       - name: Update CocoaPods repository
         script: |
           pod repo update
 
-      # Step 5: Install CocoaPods dependencies
+      # Step 6: Install CocoaPods dependencies
       - name: Install CocoaPods
         script: |
           cd ios
           pod install --repo-update --verbose
           cd ..
 
-      # Step 6: Build the iOS app
+      # Step 7: Build the iOS app
       - name: Build iOS app
         script: |
           flutter build ios --debug --no-codesign --verbose
