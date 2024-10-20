@@ -1,7 +1,28 @@
-# This is an example
+# CocoaPods repository for public pod specs
+source 'https://github.com/CocoaPods/Specs.git'
+
+# Define the minimum iOS deployment target version
 platform :ios, '12.0'
+
+# CocoaPods analytics sends network stats, disable it to avoid sending stats
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
 target 'Runner' do
-use_frameworks!
-# replace 'PodDependency' with the name of the CocoaPod you want to install
-pod 'PotDependency'
+  # Enable dynamic frameworks (required by many iOS libraries)
+  use_frameworks!
+  use_modular_headers!
+
+  # Manually add any additional native dependencies here if necessary.
+  # Example:
+  # pod 'Firebase/Core'
+end
+
+# Post-installation hooks to manage potential architecture issues on simulators (e.g., arm64)
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      # Exclude `arm64` architecture when building for iOS Simulator on Apple Silicon Macs
+      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+    end
+  end
 end
