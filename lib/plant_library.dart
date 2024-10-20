@@ -31,13 +31,14 @@ class PlantLibraryState extends State<PlantLibrary> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Title and smiley face
+        // Title and subheading with smiley face
         const Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Plant is Life",
+                "Plant Is Life",
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
@@ -46,10 +47,18 @@ class PlantLibraryState extends State<PlantLibrary> {
               ),
               SizedBox(height: 4),
               Text(
+                "Explore and learn about different plant diseases",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontStyle: FontStyle.italic,
+                  fontFamily: 'SFProDisplay',
+                ),
+              ),
+              SizedBox(height: 4),
+              Text(
                 ":)",
                 style: TextStyle(fontSize: 24),
               ),
-              SizedBox(height: 16),
             ],
           ),
         ),
@@ -82,35 +91,35 @@ class PlantLibraryState extends State<PlantLibrary> {
               final disease = filteredDiseases[index];
               return Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
                 child: Card(
-                  elevation: 2,
-                  color: Colors.green, // Green background for card
+                  elevation: 4,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                     side: const BorderSide(color: Colors.green, width: 1.5),
                   ),
-                  child: Row(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ClipRRect(
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(12.0),
-                          bottomLeft: Radius.circular(12.0),
+                          topRight: Radius.circular(12.0),
                         ),
                         child: Stack(
                           children: [
                             Image.asset(
                               disease.imagePath,
-                              width: 100,
-                              height: 100,
+                              width: double.infinity,
+                              height: 120,
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) {
                                 return const Icon(Icons.error, size: 100);
                               },
                             ),
                             Container(
-                              width: 100,
-                              height: 100,
+                              width: double.infinity,
+                              height: 120,
                               decoration: const BoxDecoration(
                                 gradient: LinearGradient(
                                   colors: [
@@ -118,47 +127,58 @@ class PlantLibraryState extends State<PlantLibrary> {
                                     Colors
                                         .green, // Green gradient to blend with card background
                                   ],
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
                                   stops: [
-                                    0.5,
+                                    0.7,
                                     1.0
-                                  ], // Increase feather effect to make it blend seamlessly
+                                  ], // Feather effect to blend seamlessly
                                 ),
                               ),
                             ),
                           ],
                         ),
                       ),
-                      Expanded(
-                        child: ListTile(
-                          title: Text(
-                            disease.name,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors
-                                  .white, // White text for better contrast on green background
-                            ),
-                          ),
-                          trailing: const Icon(Icons.arrow_forward,
-                              color: Colors
-                                  .white), // White arrow icon for contrast
-                          contentPadding: const EdgeInsets.symmetric(
-                              vertical: 16.0,
-                              horizontal:
-                                  16.0), // Uniform padding for all items
-                          onTap: () {
-                            // Navigate to DiseaseDetails with bullet points
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => DiseaseDetails(
-                                  disease: disease,
-                                ),
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              disease.name,
+                              style: const TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.green,
                               ),
-                            );
-                          },
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              "Severity: ${disease.severity}",
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.black54,
+                              ),
+                            ),
+                            const SizedBox(height: 6),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.arrow_forward,
+                                color: Colors.green,
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DiseaseDetails(
+                                      disease: disease,
+                                    ),
+                                  ),
+                                );
+                              },
+                              splashColor: Colors.greenAccent,
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -338,22 +358,6 @@ class DiseaseRepository {
       ],
       description:
           'Coconut Bud Rot affects the youngest parts of the coconut palm, causing wilting and death of new shoots. If left unchecked, it can lead to the death of the entire palm.',
-    ),
-    Disease(
-      name: 'Coconut Catterpillar',
-      imagePath: 'assets/diseases/coconut_catterpillar.jpg',
-      severity: 'Moderate',
-      treatments: [
-        'Chemical: Apply appropriate insecticides targeting caterpillars.',
-        'Organic: Use biological pesticides like Bacillus thuringiensis (Bt).',
-        'Mechanical: Manually remove caterpillars from the palms.'
-      ],
-      preventiveMeasures: [
-        'Regularly inspect palms for early signs of caterpillar infestation.',
-        'Maintain plant hygiene to reduce pest habitats.'
-      ],
-      description:
-          'Coconut Catterpillars are larvae that feed on coconut leaves, causing significant defoliation and weakening the palm. Severe infestations can reduce coconut yield and overall plant vigor.',
     ),
     Disease(
       name: 'Coconut Catterpillar Spot',

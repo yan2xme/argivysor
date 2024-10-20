@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'generated/l10n.dart'; // Localization file
 import 'consts.dart'; // Ensure GEMINI_API_KEY is defined here
 import 'main_menu.dart'; // Adjust the path if main_menu.dart is in a different directory
 import 'splash_screen.dart';
@@ -15,8 +17,32 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  static void setLocale(BuildContext context, Locale newLocale) {
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    state?.setLocale(newLocale);
+  }
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale? _locale;
+
+  void setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    // Optionally load saved locale from persistent storage here
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +50,20 @@ class MyApp extends StatelessWidget {
       title: 'AgriVysor',
       debugShowCheckedModeBanner: false,
       theme: _buildTheme(),
+      locale: _locale,
+      supportedLocales: S.delegate.supportedLocales,
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       initialRoute: '/', // Default route is the splash screen
       routes: {
         '/': (context) => const SplashScreen(),
-        '/main_menu': (context) => const MainMenu(),
+        '/main_menu': (context) => MainMenu(
+              setLocale: (Locale) {},
+            ),
       },
     );
   }

@@ -241,6 +241,8 @@ class DiseaseDetails extends StatelessWidget {
                         disease: disease, // Pass the disease object
                         userImagePath:
                             userImagePath, // Pass the user-captured image path
+                        shouldSendPrompt:
+                            true, // Set this to true to auto-send prompt
                       ),
                     ),
                   );

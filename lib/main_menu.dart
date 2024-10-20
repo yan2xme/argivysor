@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'detect_tab.dart'; // Import DetectTab
 import 'plant_library.dart'; // Import PlantLibrary
 import 'pages/home_page.dart'; // Import HomePage (GeminiChatbot)
+import 'history.dart'; // Import HistoryPage (new)
+import 'generated/l10n.dart'; // Import localization
 
 class MainMenu extends StatefulWidget {
-  const MainMenu({super.key});
+  final Function(Locale) setLocale;
+  const MainMenu({super.key, required this.setLocale});
 
   @override
   MainMenuState createState() => MainMenuState();
@@ -19,21 +22,12 @@ class MainMenuState extends State<MainMenu>
   late final AnimationController _animationController;
   late final Animation<Offset> _slideAnimation;
 
-  // Create a mock disease for the HomePage
-  final Disease mockDisease = Disease(
-    name: 'Mock Disease',
-    imagePath: 'assets/mock_disease.png',
-    severity: 'low',
-    treatments: ['Treatment 1', 'Treatment 2'],
-    preventiveMeasures: ['Preventive Measure 1', 'Preventive Measure 2'],
-    description: 'This is a mock disease for testing.',
-  );
-
   // Updated _widgetOptions list with HomePage included
   late final List<Widget> _widgetOptions = <Widget>[
     const DetectTab(), // Index 0
     const PlantLibrary(), // Index 1
-    HomePage(disease: mockDisease), // Index 2 (Chatbot) with mock disease
+    const HomePage(shouldSendPrompt: false), // Index 2 (Chatbot) with no prompt
+    const HistoryPage(), // Index 3 (HistoryPage) without inferenceHistory parameter
   ];
 
   @override
@@ -109,21 +103,33 @@ class MainMenuState extends State<MainMenu>
                 children: [
                   NavigationItem(
                     icon: Icons.camera_alt,
-                    label: 'Detect',
+                    label: S.of(context).detect,
                     isSelected: _selectedIndex == 0,
                     onTap: () => _onItemTapped(0),
                   ),
                   NavigationItem(
                     icon: Icons.library_books,
-                    label: 'Library',
+                    label: S.of(context).library,
                     isSelected: _selectedIndex == 1,
                     onTap: () => _onItemTapped(1),
                   ),
                   NavigationItem(
                     icon: Icons.chat_bubble_outline,
-                    label: 'Chatbot',
+                    label: S.of(context).chatbot,
                     isSelected: _selectedIndex == 2,
                     onTap: () => _onItemTapped(2),
+                  ),
+                  NavigationItem(
+                    icon: Icons.history, // New History icon
+                    label: S.of(context).history,
+                    isSelected: _selectedIndex == 3,
+                    onTap: () => _onItemTapped(3),
+                  ),
+                  NavigationItem(
+                    icon: Icons.language,
+                    label: 'Select Language',
+                    isSelected: false,
+                    onTap: () => _showLanguageSelectionDialog(),
                   ),
                 ],
               ),
@@ -131,6 +137,36 @@ class MainMenuState extends State<MainMenu>
           ],
         ),
       ),
+    );
+  }
+
+  void _showLanguageSelectionDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Select Language'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: const Text('English'),
+                onTap: () {
+                  widget.setLocale(const Locale('en'));
+                  Navigator.of(context).pop();
+                },
+              ),
+              ListTile(
+                title: const Text('Tagalog'),
+                onTap: () {
+                  widget.setLocale(const Locale('tl'));
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -201,7 +237,7 @@ class MainMenuState extends State<MainMenu>
                           child: Column(
                             children: [
                               Text(
-                                "Good Day!",
+                                S.of(context).goodDay,
                                 style: TextStyle(
                                   fontSize: 36,
                                   fontWeight: FontWeight.bold,
@@ -211,7 +247,7 @@ class MainMenuState extends State<MainMenu>
                                 textAlign: TextAlign.center,
                               ),
                               Text(
-                                "Let's detect the disease now!",
+                                S.of(context).detectDisease,
                                 style: TextStyle(
                                   fontSize: 24,
                                   fontStyle: FontStyle.italic,
@@ -225,10 +261,13 @@ class MainMenuState extends State<MainMenu>
                         ),
                       ],
                       const SizedBox(height: 30),
-                      // Expanded selected widget
+                      // Expanded selected widget with conditional padding
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(16.0),
+                          padding: _selectedIndex == 2
+                              ? EdgeInsets.zero // Remove padding for HomePage
+                              : const EdgeInsets.all(
+                                  16.0), // Padding for others
                           child: AnimatedSwitcher(
                             duration: const Duration(milliseconds: 500),
                             switchInCurve: Curves.easeInOutCubic,

@@ -38,7 +38,9 @@ class _SplashScreenState extends State<SplashScreen>
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-            builder: (context) => const MainMenu()), // Navigate to Main Menu
+            builder: (context) => MainMenu(
+                  setLocale: (Locale) {},
+                )), // Navigate to Main Menu
       );
     });
   }

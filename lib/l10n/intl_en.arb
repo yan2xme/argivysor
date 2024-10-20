@@ -1,0 +1,11 @@
+{
+    "@@locale": "en",
+    "appTitle": "AgriVysor",
+    "detect": "Detect",
+    "library": "Library",
+    "chatbot": "Chatbot",
+    "history": "History",
+    "goodDay": "Good Day!",
+    "detectDisease": "Let's detect the disease now!"
+  }
+  
