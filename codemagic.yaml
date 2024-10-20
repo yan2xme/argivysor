@@ -9,8 +9,7 @@ workflows:
     cache:
       paths:
         - ~/.pub-cache
-        # Exclude CocoaPods cache to avoid stale pods
-        - !~/.cocoapods
+        # Note: Do not include ~/.cocoapods to prevent caching it
     scripts:
       # Step 1: Clean the Flutter project
       - name: Clean Flutter project
@@ -33,14 +32,14 @@ workflows:
         script: |
           pod repo update
 
-      # Step 5: Install CocoaPods dependencies
+      # Step 5: Install CocoaPods dependencies with verbose logging
       - name: Install CocoaPods
         script: |
           cd ios
-          pod install --repo-update
+          pod install --repo-update --verbose
           cd ..
 
-      # Step 6: Build the iOS app
+      # Step 6: Build the iOS app with verbose logging
       - name: Build iOS app
         script: |
           flutter build ios --debug --no-codesign --verbose
