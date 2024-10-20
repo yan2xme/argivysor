@@ -15,11 +15,11 @@ class HomePage extends StatefulWidget {
   final bool shouldSendPrompt; // New flag to control the initial prompt
 
   const HomePage({
-    Key? key,
+    super.key,
     this.disease,
     this.userImagePath,
     required this.shouldSendPrompt,
-  }) : super(key: key);
+  });
 
   @override
   HomePageState createState() => HomePageState(); // Changed to public
@@ -138,8 +138,8 @@ Provide more insights about the disease and the image I sent you.''';
   // Function to pick multiple images and add them to the selectedImages list
   Future<void> _pickImages() async {
     final ImagePicker picker = ImagePicker();
-    final List<XFile>? images = await picker.pickMultiImage();
-    if (images != null && images.isNotEmpty) {
+    final List<XFile> images = await picker.pickMultiImage();
+    if (images.isNotEmpty) {
       setState(() {
         selectedImages.addAll(images);
       });
