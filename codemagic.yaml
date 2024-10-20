@@ -1,0 +1,53 @@
+workflows:
+  android-workflow:
+    name: Build Android
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      vars:
+        ANDROID_KEYSTORE: Encrypted(...) # Add your keystore encryption here
+        ANDROID_KEYSTORE_PASSWORD: Encrypted(...)
+        ANDROID_KEY_ALIAS: Encrypted(...)
+        ANDROID_KEY_PASSWORD: Encrypted(...)
+    scripts:
+      - name: Install dependencies
+        script: |
+          flutter pub get
+      - name: Build APK
+        script: |
+          flutter build apk --release
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
+
+  ios-workflow:
+    name: Build iOS
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      vars:
+        CERTIFICATE: Encrypted(...) # Add your certificate encryption here
+        PROVISIONING_PROFILE: Encrypted(...)
+    scripts:
+      - name: Install dependencies
+        script: |
+          flutter pub get
+      - name: Set up iOS certificates
+        script: |
+          mkdir -p ios/ci_scripts && echo "$CERTIFICATE" > ios/ci_scripts/cert.p12
+          security create-keychain -p "" build.keychain
+          security import ios/ci_scripts/cert.p12 -k build.keychain -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+          security list-keychains -s build.keychain
+          security unlock-keychain -p "" build.keychain
+          security set-keychain-settings -t 3600 -u build.keychain
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "" build.keychain
+      - name: Build iOS app
+        script: |
+          flutter build ios --release --no-codesign
+    artifacts:
+      - build/ios/ipa/*.ipa
+
+  common:
+    cache:
+      cache_paths:
+        - "~/.pub-cache"
+        - "build/"
