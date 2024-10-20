@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.6
-  image_picker: ^1.1.0
+  image_picker: ^1.1.2flu
   tflite_v2: ^1.0.0
   image: ^4.0.17
   path_provider: ^2.0.15
