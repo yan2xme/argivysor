@@ -1,58 +1,17 @@
 workflows:
-  ios-build-workflow:
-    name: iOS Build Workflow
+  android-debug:
+    name: Android Debug Workflow
     max_build_duration: 60
     environment:
       flutter: stable
-      xcode: latest
-      cocoapods: default
-    cache:
-      cache_paths:
-        - ~/.pub-cache
-        # Note: Do not include ~/.cocoapods to prevent caching it
+      android:
+        sdk: "latest"
     scripts:
-      # Step 1: Clean the Flutter project
-      - name: Clean Flutter project
-        script: |
-          flutter clean
-
-      # Step 2: Get Flutter dependencies
-      - name: Get Flutter dependencies
+      - name: Install dependencies
         script: |
           flutter pub get
-
-      # Step 3: Print FLUTTER_ROOT for debugging
-      - name: Print FLUTTER_ROOT
+      - name: Build Debug APK
         script: |
-          echo "FLUTTER_ROOT is set to: $FLUTTER_ROOT"
-
-      # Step 4: Remove existing Pods and Podfile.lock (optional but recommended)
-      - name: Remove Pods and Podfile.lock
-        script: |
-          rm -rf ios/Pods
-          rm -f ios/Podfile.lock
-
-      # Step 5: Update CocoaPods repository
-      - name: Update CocoaPods repository
-        script: |
-          pod repo update
-
-      # Step 6: Install CocoaPods dependencies
-      - name: Install CocoaPods
-        script: |
-          cd ios
-          pod install --repo-update --verbose
-          cd ..
-
-      # Step 7: Build the iOS app
-      - name: Build iOS app
-        script: |
-          flutter build ios --debug --no-codesign --verbose
-
+          flutter build apk --debug
     artifacts:
-      - build/ios/iphoneos/Runner.app
-      - build/ios/iphoneos/Runner.app.dSYM.zip
-    publishing:
-      scripts:
-        - name: Notify success
-          script: echo "iOS build completed successfully."
+      - build/app/outputs/flutter-apk/app-debug.apk
