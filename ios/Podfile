@@ -23,6 +23,12 @@ post_install do |installer|
     target.build_configurations.each do |config|
       # Exclude `arm64` architecture when building for iOS Simulator on Apple Silicon Macs
       config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+      # Disable code signing for iOS Simulator builds
+      if config.name == 'Debug' or config.name == 'Release'
+        config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+        config.build_settings['CODE_SIGNING_REQUIRED'] = 'NO'
+        config.build_settings['CODE_SIGNING_IDENTITY'] = ''
+      end
     end
   end
 end
