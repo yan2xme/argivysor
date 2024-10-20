@@ -1,0 +1,7 @@
+# This is an example
+platform :ios, '12.0'
+target 'Runner' do
+use_frameworks!
+# replace 'PodDependency' with the name of the CocoaPod you want to install
+pod 'PotDependency'
+end
