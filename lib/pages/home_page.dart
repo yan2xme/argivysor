@@ -1,11 +1,11 @@
 import 'dart:io';
-import 'dart:typed_data'; // For Uint8List
 import 'package:flutter/material.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
-import 'package:flutter_gemini/flutter_gemini.dart'; // Assuming this handles the Gemini Chatbot
+import 'package:flutter_gemini/flutter_gemini.dart'; // Ensure Content and Parts are exported
 import 'package:classifier/plant_library.dart'; // Assuming the Disease class is defined here
 import 'package:logging/logging.dart'; // Added for logging
 import 'package:image_picker/image_picker.dart'; // For picking images
+import 'package:flutter_markdown/flutter_markdown.dart'; // For rendering Markdown
 
 final Logger _logger = Logger('HomePage'); // Initialize logger
 
@@ -22,7 +22,7 @@ class HomePage extends StatefulWidget {
   });
 
   @override
-  HomePageState createState() => HomePageState(); // Changed to public
+  HomePageState createState() => HomePageState();
 }
 
 class HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
@@ -89,49 +89,49 @@ Provide more insights about the disease and the image I sent you.''';
     _sendMessage(combinedMessage); // Send the message
   }
 
-  // Function to send a message
-  void _sendMessage(ChatMessage chatMessage) {
+  // Function to send a message using multi-turn conversation
+  Future<void> _sendMessage(ChatMessage chatMessage) async {
     setState(() {
-      messages = [chatMessage, ...messages]; // Add the message to the list
+      messages.insert(0, chatMessage); // Add the user's message to the list
     });
 
     try {
-      String question = chatMessage.text; // Message text
-      List<Uint8List>? images;
-      if (chatMessage.medias?.isNotEmpty ?? false) {
-        images = chatMessage.medias!
-            .map((media) => File(media.url).readAsBytesSync())
-            .toList();
-      }
+      // Construct the conversation history as a list of Content
+      List<Content> conversation = messages.reversed
+          .map((msg) => Content(
+                parts: [Parts(text: msg.text)],
+                role: msg.user.id == currentUser.id ? 'user' : 'model',
+              ))
+          .toList();
 
-      // Send the message to Gemini AI
-      gemini
-          .streamGenerateContent(
-        question,
-        images: images,
-      )
-          .listen((event) {
-        String response = event.content?.parts
-                ?.fold("", (previous, current) => "$previous${current.text}") ??
-            "";
+      // Call Gemini.chat with the conversation history
+      final response = await gemini.chat(conversation);
 
-        // Stripping multiple spaces and newlines for more continuous text
-        response = response.replaceAll(RegExp(r'\s+'), ' ');
+      // Check if the widget is still mounted before using context
+      if (!mounted) return;
 
-        // Create a response message from AI without breaking
-        ChatMessage replyMessage = ChatMessage(
-          user: geminiUser,
-          createdAt: DateTime.now(),
-          text: response,
-        );
+      // Extract the response text assuming response.output is a String
+      String aiResponse = response?.output ?? 'No response';
 
-        setState(() {
-          messages = [replyMessage, ...messages];
-        });
+      // Create a new ChatMessage for the AI response
+      ChatMessage aiMessage = ChatMessage(
+        user: geminiUser,
+        createdAt: DateTime.now(),
+        text: aiResponse,
+      );
+
+      setState(() {
+        messages.insert(0, aiMessage); // Add the AI's response to the list
       });
+
+      _logger.info('AI Response: $aiResponse');
     } catch (e) {
-      _logger
-          .severe('Failed to send message: $e'); // Use logger instead of print
+      _logger.severe('Failed to send message: $e');
+      if (!mounted) return;
+      // Notify the user about the error
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to send message: $e')),
+      );
     }
   }
 
@@ -259,6 +259,31 @@ Provide more insights about the disease and the image I sent you.''';
                   ),
                 ],
               ),
+              // Attempt to use a custom message builder if supported
+              // If not supported, remove this section
+              // Uncomment the following lines if your dash_chat_2 version supports it
+              /*
+              messageBuilder: (ChatMessage message, bool isUser) {
+                return Container(
+                  margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                  alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
+                  child: Container(
+                    padding: const EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      color: isUser ? Colors.green[200]! : Colors.grey[300]!,
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: MarkdownBody(
+                      data: message.text,
+                      styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
+                        p: const TextStyle(fontSize: 16.0),
+                        strong: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                );
+              },
+              */
             ),
           ),
           // Display selected images with remove (X) buttons

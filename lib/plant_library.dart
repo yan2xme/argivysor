@@ -376,7 +376,7 @@ class DiseaseRepository {
           'Coconut Catterpillar Spot refers to the damage and spots caused by caterpillar feeding on coconut leaves. This can lead to reduced photosynthetic area and increased susceptibility to other diseases.',
     ),
     Disease(
-      name: 'Coconut Grayleaf Spot',
+      name: 'Coconut Gray Leaf Spot',
       imagePath: 'assets/diseases/coconut_grayleaf_spot.jpg',
       severity: 'Moderate',
       treatments: [
@@ -454,7 +454,7 @@ class DiseaseRepository {
 
     // Corn Diseases
     Disease(
-      name: 'Corn Cercospora Leaf Spot',
+      name: 'Corn Gray Leaf Spot',
       imagePath: 'assets/diseases/corn_cercospora_leaf_spot.jpg',
       severity: 'Moderate',
       treatments: [

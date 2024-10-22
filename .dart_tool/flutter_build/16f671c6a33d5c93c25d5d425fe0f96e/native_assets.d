@@ -1,0 +1,1 @@
+ C:\\Users\\Admin\\Desktop\\ALL\ Plants\ Disease\\FLUTTERAPP\\mamatay\\argivysor\\.dart_tool\\flutter_build\\16f671c6a33d5c93c25d5d425fe0f96e\\native_assets.yaml: 
