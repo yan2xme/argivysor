@@ -1,25 +1,28 @@
 import 'dart:io';
+import 'dart:typed_data'; // For Uint8List
 import 'package:flutter/material.dart';
-import 'package:dash_chat_2/dash_chat_2.dart';
-import 'package:flutter_gemini/flutter_gemini.dart'; // Ensure Content and Parts are exported
-import 'package:classifier/plant_library.dart'; // Assuming the Disease class is defined here
-import 'package:logging/logging.dart'; // Added for logging
-import 'package:image_picker/image_picker.dart'; // For picking images
-import 'package:flutter_markdown/flutter_markdown.dart'; // For rendering Markdown
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:flutter_gemini/flutter_gemini.dart'; // Gemini Chatbot
+import 'package:classifier/plant_library.dart'; // Disease class
+import 'package:logging/logging.dart'; // Logging
+import 'package:image_picker/image_picker.dart'; // Image picker
+import 'package:uuid/uuid.dart'; // Unique IDs
+import 'package:flutter_markdown/flutter_markdown.dart'; // For Markdown support
 
 final Logger _logger = Logger('HomePage'); // Initialize logger
 
 class HomePage extends StatefulWidget {
   final Disease? disease; // Can be null if accessed from menu
   final String? userImagePath; // Can be null if accessed from menu
-  final bool shouldSendPrompt; // New flag to control the initial prompt
+  final bool shouldSendPrompt; // Control initial prompt
 
   const HomePage({
-    super.key,
+    Key? key,
     this.disease,
     this.userImagePath,
     required this.shouldSendPrompt,
-  });
+  }) : super(key: key);
 
   @override
   HomePageState createState() => HomePageState();
@@ -28,19 +31,23 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
   final Gemini gemini = Gemini.instance; // Chatbot instance
 
-  List<ChatMessage> messages = []; // List of chat messages
-
-  // List to hold selected images before sending
-  final List<XFile> selectedImages = [];
+  List<types.Message> messages = []; // Chat messages
+  List<Content> conversation = []; // Conversation history
 
   // Chat user objects
-  final ChatUser currentUser = ChatUser(id: "0", firstName: "User");
-  final ChatUser geminiUser = ChatUser(
-    id: "1",
-    firstName: "✨ Gemini",
-    profileImage:
-        "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-gemini-icon.png",
+  final types.User currentUser = const types.User(id: '0', firstName: 'User');
+  final types.User geminiUser = const types.User(
+    id: '1',
+    firstName: '✨ Gemini',
+    imageUrl:
+        'https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-gemini-icon.png',
   );
+
+  // For picking images
+  final ImagePicker _picker = ImagePicker();
+  List<File> _selectedImages = []; // List to hold selected images
+
+  TextEditingController _textController = TextEditingController();
 
   @override
   bool get wantKeepAlive => true;
@@ -62,146 +69,400 @@ class HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
 **Description**: ${widget.disease?.description}  
 **Treatments**: ${widget.disease?.treatments.join(", ")}  
 **Preventive Measures**: ${widget.disease?.preventiveMeasures.join(", ")}
-    
+
 Provide more insights about the disease and the image I sent you.''';
 
-    // If the image path is available, include it in the message
-    if (widget.userImagePath != null) {
-      diseaseDetails += ' Here is the captured image for the disease:';
-    }
-
-    // Send the combined disease details, image path, and prompt as one message
-    ChatMessage combinedMessage = ChatMessage(
-      user: currentUser,
-      createdAt: DateTime.now(),
-      text: diseaseDetails,
-      medias: widget.userImagePath != null
-          ? [
-              ChatMedia(
-                url: widget.userImagePath!,
-                fileName: "Disease Image",
-                type: MediaType.image,
-              )
-            ]
-          : null, // Include the image if available
+    // Create a custom message with text and image
+    final message = types.CustomMessage(
+      author: currentUser,
+      createdAt: DateTime.now().millisecondsSinceEpoch,
+      id: const Uuid().v4(),
+      metadata: {
+        'text': diseaseDetails,
+        'imageUris':
+            widget.userImagePath != null ? [widget.userImagePath!] : [],
+      },
     );
 
-    _sendMessage(combinedMessage); // Send the message
+    _sendMessage(message); // Send the message
   }
 
-  // Function to send a message using multi-turn conversation
-  Future<void> _sendMessage(ChatMessage chatMessage) async {
+  // Function to send a message
+  void _sendMessage(types.Message message) {
     setState(() {
-      messages.insert(0, chatMessage); // Add the user's message to the list
+      messages.insert(0, message); // Add user's message to the list
     });
 
     try {
-      // Construct the conversation history as a list of Content
-      List<Content> conversation = messages.reversed
-          .map((msg) => Content(
-                parts: [Parts(text: msg.text)],
-                role: msg.user.id == currentUser.id ? 'user' : 'model',
-              ))
-          .toList();
+      String question = '';
+      List<Uint8List>? images;
 
-      // Call Gemini.chat with the conversation history
-      final response = await gemini.chat(conversation);
+      if (message is types.ImageMessage) {
+        // If the message is an image message
+        question = '';
+        images = [File(message.uri).readAsBytesSync()];
+      } else if (message is types.TextMessage) {
+        question = message.text;
+      } else if (message is types.CustomMessage) {
+        // If the message is a custom message with text and images
+        if (message.metadata != null) {
+          question = message.metadata!['text'] ?? '';
+          if (message.metadata!['imageUris'] != null) {
+            images = (message.metadata!['imageUris'] as List<dynamic>)
+                .map((uri) => File(uri as String).readAsBytesSync())
+                .toList();
+          }
+        }
+      }
 
-      // Check if the widget is still mounted before using context
-      if (!mounted) return;
+      // Add user's message to the conversation history
+      conversation.add(
+        Content(
+          parts: [Parts(text: question)],
+          role: 'user',
+        ),
+      );
 
-      // Extract the response text assuming response.output is a String
-      String aiResponse = response?.output ?? 'No response';
-
-      // Create a new ChatMessage for the AI response
-      ChatMessage aiMessage = ChatMessage(
-        user: geminiUser,
-        createdAt: DateTime.now(),
-        text: aiResponse,
+      // Create a placeholder for the AI response with typing indicator
+      final aiMessage = types.TextMessage(
+        author: geminiUser,
+        createdAt: DateTime.now().millisecondsSinceEpoch,
+        id: const Uuid().v4(),
+        text: 'Gemini is typing...',
       );
 
       setState(() {
-        messages.insert(0, aiMessage); // Add the AI's response to the list
+        messages.insert(0, aiMessage); // Add the placeholder to the list
       });
 
-      _logger.info('AI Response: $aiResponse');
+      // Determine which Gemini API to call based on whether images are present
+      if (images != null && images.isNotEmpty) {
+        // Use textAndImage API
+        gemini
+            .textAndImage(
+          text: question,
+          images: images,
+        )
+            .then((value) {
+          String content =
+              value?.content?.parts?.map((part) => part.text).join('') ?? '';
+
+          // Add the AI response to the conversation history
+          conversation.add(
+            Content(
+              parts: [Parts(text: content)],
+              role: 'model',
+            ),
+          );
+
+          setState(() {
+            // Update the AI message in the list
+            if (messages.isNotEmpty &&
+                messages[0].author.id == geminiUser.id &&
+                messages[0] is types.TextMessage &&
+                (messages[0] as types.TextMessage).text ==
+                    'Gemini is typing...') {
+              messages[0] = types.TextMessage(
+                author: geminiUser,
+                createdAt: messages[0].createdAt,
+                id: messages[0].id,
+                text: content,
+              );
+            }
+          });
+        }).catchError((e) {
+          _logger.severe('Failed to get AI response: $e');
+        });
+      } else {
+        // Use chat API for multi-turn conversation
+        gemini.chat(conversation).then((value) {
+          String content = value?.output ?? '';
+
+          // Add the AI response to the conversation history
+          conversation.add(
+            Content(
+              parts: [Parts(text: content)],
+              role: 'model',
+            ),
+          );
+
+          setState(() {
+            // Update the AI message in the list
+            if (messages.isNotEmpty &&
+                messages[0].author.id == geminiUser.id &&
+                messages[0] is types.TextMessage &&
+                (messages[0] as types.TextMessage).text ==
+                    'Gemini is typing...') {
+              messages[0] = types.TextMessage(
+                author: geminiUser,
+                createdAt: messages[0].createdAt,
+                id: messages[0].id,
+                text: content,
+              );
+            }
+          });
+        }).catchError((e) {
+          _logger.severe('Failed to get AI response: $e');
+        });
+      }
     } catch (e) {
       _logger.severe('Failed to send message: $e');
-      if (!mounted) return;
-      // Notify the user about the error
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to send message: $e')),
-      );
     }
   }
 
-  // Function to pick multiple images and add them to the selectedImages list
-  Future<void> _pickImages() async {
-    final ImagePicker picker = ImagePicker();
-    final List<XFile> images = await picker.pickMultiImage();
-    if (images.isNotEmpty) {
-      setState(() {
-        selectedImages.addAll(images);
-      });
-    }
-  }
-
-  // Function to remove a selected image
-  void _removeImage(int index) {
-    setState(() {
-      selectedImages.removeAt(index);
-    });
-  }
-
-  // Function to send the combined message with text and selected images
-  void _sendCombinedMessage(ChatMessage message) {
-    String text = message.text;
-    if (text.trim().isEmpty && selectedImages.isEmpty) {
+  // Function to handle sending of combined text and images
+  void _handleSendPressed(types.PartialText partialText) {
+    if (partialText.text.trim().isEmpty && _selectedImages.isEmpty) {
       // Do not send empty messages
       return;
     }
 
-    // Create a list of ChatMedia from selected images
-    List<ChatMedia> medias = selectedImages.map((xfile) {
-      return ChatMedia(
-        url: xfile.path,
-        fileName: "User Image",
-        type: MediaType.image,
-      );
-    }).toList();
-
-    // Include the medias from the message if any
-    if (message.medias != null && message.medias!.isNotEmpty) {
-      medias.addAll(message.medias!);
-    }
-
-    ChatMessage combinedMessage = ChatMessage(
-      user: currentUser,
-      createdAt: DateTime.now(),
-      text: text,
-      medias: medias.isNotEmpty ? medias : null,
+    // Create a custom message with text and images
+    final message = types.CustomMessage(
+      author: currentUser,
+      createdAt: DateTime.now().millisecondsSinceEpoch,
+      id: const Uuid().v4(),
+      metadata: {
+        'text':
+            partialText.text.trim().isNotEmpty ? partialText.text.trim() : '',
+        'imageUris': _selectedImages.map((file) => file.path).toList(),
+      },
     );
 
-    _sendMessage(combinedMessage);
+    _sendMessage(message);
 
     // Clear selected images after sending
     setState(() {
-      selectedImages.clear();
+      _selectedImages.clear();
+      _textController.clear();
     });
+  }
+
+  // Function to pick an image and add it to the selected images
+  Future<void> _handleImageSelection() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      setState(() {
+        _selectedImages.add(File(image.path));
+      });
+    }
   }
 
   // Function to clear the chat
   void _clearChat() {
     setState(() {
       messages.clear();
-      selectedImages.clear();
+      conversation.clear();
+      _selectedImages.clear();
     });
+  }
+
+  // Custom message builder to handle messages with markdown and images
+  Widget _messageBuilder(types.Message message, {required int messageWidth}) {
+    // Determine if the message is from the user or AI
+    bool isUser = message.author.id == currentUser.id;
+
+    if (message is types.TextMessage) {
+      return Align(
+        alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
+        child: Container(
+          padding: const EdgeInsets.all(8.0),
+          margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+          decoration: BoxDecoration(
+            color: isUser ? Colors.green[200] : Colors.green[100],
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          child: MarkdownBody(
+            data: message.text,
+            styleSheet: MarkdownStyleSheet(
+              p: const TextStyle(fontSize: 16.0),
+              strong: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+      );
+    } else if (message is types.ImageMessage) {
+      return Align(
+        alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
+        child: Container(
+          margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16.0), // Rounded corners
+            child: Image.file(
+              File(message.uri),
+              width: 200,
+              height: 200,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+      );
+    } else if (message is types.CustomMessage) {
+      return Align(
+        alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
+        child: Container(
+          padding: const EdgeInsets.all(8.0),
+          margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+          decoration: BoxDecoration(
+            color: isUser ? Colors.green[200] : Colors.green[100],
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          child: Column(
+            crossAxisAlignment:
+                isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            children: [
+              if (message.metadata != null &&
+                  message.metadata!['text'] != null &&
+                  (message.metadata!['text'] as String).isNotEmpty)
+                MarkdownBody(
+                  data: message.metadata!['text'] as String,
+                  styleSheet: MarkdownStyleSheet(
+                    p: const TextStyle(fontSize: 16.0),
+                    strong: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              if (message.metadata != null &&
+                  message.metadata!['imageUris'] != null &&
+                  (message.metadata!['imageUris'] as List).isNotEmpty)
+                SizedBox(
+                  height: 200,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: (message.metadata!['imageUris'] as List).length,
+                    itemBuilder: (context, index) {
+                      String uri =
+                          message.metadata!['imageUris'][index] as String;
+                      return Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius:
+                                BorderRadius.circular(16.0), // Rounded corners
+                            child: Container(
+                              margin: const EdgeInsets.all(4.0),
+                              child: Image.file(
+                                File(uri),
+                                width: 150,
+                                height: 150,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 4,
+                            top: 4,
+                            child: GestureDetector(
+                              onTap: () {
+                                // Optionally implement removing images from messages
+                              },
+                              child: const CircleAvatar(
+                                radius: 12,
+                                backgroundColor: Colors.red,
+                                child: Icon(Icons.close,
+                                    size: 16, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+            ],
+          ),
+        ),
+      );
+    } else {
+      return const SizedBox.shrink();
+    }
+  }
+
+  Widget _buildInput() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8.0),
+          color: Colors.white,
+          child: Row(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.image, color: Colors.green),
+                onPressed: _handleImageSelection,
+              ),
+              Expanded(
+                child: TextField(
+                  controller: _textController,
+                  decoration: const InputDecoration(
+                    hintText: 'Type your message',
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.send, color: Colors.green),
+                onPressed: () {
+                  final text = _textController.text;
+                  _handleSendPressed(types.PartialText(text: text));
+                },
+              ),
+            ],
+          ),
+        ),
+        // Display selected images below the input bar
+        if (_selectedImages.isNotEmpty)
+          Container(
+            height: 100,
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: _selectedImages.length,
+              itemBuilder: (context, index) {
+                return Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius:
+                          BorderRadius.circular(16.0), // Rounded corners
+                      child: Container(
+                        margin: const EdgeInsets.all(4.0),
+                        child: Image.file(
+                          _selectedImages[index],
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      right: 4,
+                      top: 4,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _selectedImages.removeAt(index);
+                          });
+                        },
+                        child: const CircleAvatar(
+                          radius: 12,
+                          backgroundColor: Colors.red,
+                          child:
+                              Icon(Icons.close, size: 16, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+      ],
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
+      backgroundColor: Colors.white, // Set Scaffold background to white
       appBar: AppBar(
         title: Container(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
@@ -234,107 +495,29 @@ Provide more insights about the disease and the image I sent you.''';
           ),
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: DashChat(
-              currentUser: currentUser,
-              onSend: (ChatMessage message) {
-                // Use the custom send function to handle combined messages
-                _sendCombinedMessage(message);
-              },
-              messages: messages,
-              inputOptions: InputOptions(
-                alwaysShowSend: true,
-                sendButtonBuilder: (sendPressed) {
-                  return IconButton(
-                    icon: const Icon(Icons.send, color: Colors.green),
-                    onPressed: sendPressed,
-                  );
-                },
-                trailing: [
-                  IconButton(
-                    onPressed: _pickImages, // Pick multiple images
-                    icon: const Icon(Icons.image, color: Colors.green),
-                  ),
-                ],
-              ),
-              // Attempt to use a custom message builder if supported
-              // If not supported, remove this section
-              // Uncomment the following lines if your dash_chat_2 version supports it
-              /*
-              messageBuilder: (ChatMessage message, bool isUser) {
-                return Container(
-                  margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-                  alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
-                  child: Container(
-                    padding: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                      color: isUser ? Colors.green[200]! : Colors.grey[300]!,
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: MarkdownBody(
-                      data: message.text,
-                      styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
-                        p: const TextStyle(fontSize: 16.0),
-                        strong: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              */
-            ),
-          ),
-          // Display selected images with remove (X) buttons
-          if (selectedImages.isNotEmpty)
-            Container(
-              height: 100,
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: selectedImages.length,
-                itemBuilder: (context, index) {
-                  return Stack(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12.0),
-                          child: Image.file(
-                            File(selectedImages[index].path),
-                            width: 80,
-                            height: 80,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        right: 0,
-                        top: 0,
-                        child: GestureDetector(
-                          onTap: () => _removeImage(index),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.black54,
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(
-                              Icons.close,
-                              color: Colors.white,
-                              size: 18,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ),
-        ],
+      body: Chat(
+        messages: messages,
+        onSendPressed: _handleSendPressed,
+        user: currentUser,
+        theme: DefaultChatTheme(
+          primaryColor: Colors.green,
+          inputBackgroundColor: Colors.white,
+          sendButtonIcon: const Icon(Icons.send, color: Colors.green),
+          inputTextColor: Colors.black,
+          inputBorderRadius: BorderRadius.circular(20.0),
+        ),
+        customMessageBuilder: _messageBuilder,
+        showUserAvatars: false,
+        showUserNames: false,
+        customBottomWidget: _buildInput(),
       ),
     );
   }
+}
+
+extension on types.CustomMessage {
+  String? get text => metadata?['text'] as String?;
+  List<String>? get imageUris => metadata?['imageUris'] != null
+      ? List<String>.from(metadata!['imageUris'] as List<dynamic>)
+      : null;
 }

@@ -36,22 +36,9 @@ MERGED from C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivys
 MERGED from [:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-36:12
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:path_provider_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
-MERGED from [:sqflite_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\sqflite_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:tflite_v2] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\tflite_v2\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:url_launcher_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-16:12
-MERGED from [:video_player_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\video_player_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.browser:browser:1.8.0] C:\Users\Admin\.gradle\caches\transforms-3\7088994c33b931f5e07ff64894228cc7\transformed\browser-1.8.0\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.media3:media3-extractor:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\1f8de1117a8c90061e95d7643f72e460\transformed\jetified-media3-extractor-1.4.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-container:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\0bbd0be4f603350383aac287873587a6\transformed\jetified-media3-container-1.4.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-datasource:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\73f592db2cd1396610b435aa929d88bf\transformed\jetified-media3-datasource-1.4.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-decoder:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\4fcdb190866ecf00d71ab78affaac420\transformed\jetified-media3-decoder-1.4.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-database:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\30d7232bc02b85862a2452e7a3ac5ad4\transformed\jetified-media3-database-1.4.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-common:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\306c0e41f6ad01a19007e59494a8a605\transformed\jetified-media3-common-1.4.1\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.media3:media3-exoplayer-hls:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\d5b07b300d812f39fa0781e87606e83f\transformed\jetified-media3-exoplayer-hls-1.4.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-exoplayer-dash:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\2d7e2fd0fcea9068515b69778d1a4091\transformed\jetified-media3-exoplayer-dash-1.4.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-exoplayer-rtsp:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\f0ad755c340852472ee79f49d8d438c4\transformed\jetified-media3-exoplayer-rtsp-1.4.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-exoplayer-smoothstreaming:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\de59e7dc2cdd836dafc2d55d5dc311df\transformed\jetified-media3-exoplayer-smoothstreaming-1.4.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-exoplayer:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\179db03358b27845b07fdd60ab47bd1a\transformed\jetified-media3-exoplayer-1.4.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.window:window:1.2.0] C:\Users\Admin\.gradle\caches\transforms-3\0bf7b5e2e6bd116ab35a55052ef41e52\transformed\jetified-window-1.2.0\AndroidManifest.xml:17:1-31:12
 MERGED from [androidx.window:window-java:1.2.0] C:\Users\Admin\.gradle\caches\transforms-3\1bea569467ff317a295dd4845a05323f\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:17:1-21:12
 MERGED from [androidx.fragment:fragment:1.7.1] C:\Users\Admin\.gradle\caches\transforms-3\c104b32bbb7cc7aa280feaef5ba37be5\transformed\fragment-1.7.1\AndroidManifest.xml:2:1-7:12
@@ -85,9 +72,9 @@ INJECTED from C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argiv
 INJECTED from C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 	package
-		ADDED from C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:2:5-37
+		ADDED from C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:2:5-33
 		INJECTED from C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:2:5-37
+		ADDED from C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:2:5-33
 		INJECTED from C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\debug\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml
@@ -135,38 +122,12 @@ MERGED from [:flutter_plugin_android_lifecycle] C:\Users\Admin\Desktop\ALL Plant
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:sqflite_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\sqflite_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:sqflite_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\sqflite_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:tflite_v2] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\tflite_v2\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:tflite_v2] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\tflite_v2\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:url_launcher_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:url_launcher_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:video_player_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\video_player_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:video_player_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\video_player_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.browser:browser:1.8.0] C:\Users\Admin\.gradle\caches\transforms-3\7088994c33b931f5e07ff64894228cc7\transformed\browser-1.8.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.browser:browser:1.8.0] C:\Users\Admin\.gradle\caches\transforms-3\7088994c33b931f5e07ff64894228cc7\transformed\browser-1.8.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.media3:media3-extractor:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\1f8de1117a8c90061e95d7643f72e460\transformed\jetified-media3-extractor-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-extractor:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\1f8de1117a8c90061e95d7643f72e460\transformed\jetified-media3-extractor-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-container:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\0bbd0be4f603350383aac287873587a6\transformed\jetified-media3-container-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-container:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\0bbd0be4f603350383aac287873587a6\transformed\jetified-media3-container-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-datasource:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\73f592db2cd1396610b435aa929d88bf\transformed\jetified-media3-datasource-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-datasource:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\73f592db2cd1396610b435aa929d88bf\transformed\jetified-media3-datasource-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-decoder:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\4fcdb190866ecf00d71ab78affaac420\transformed\jetified-media3-decoder-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-decoder:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\4fcdb190866ecf00d71ab78affaac420\transformed\jetified-media3-decoder-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-database:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\30d7232bc02b85862a2452e7a3ac5ad4\transformed\jetified-media3-database-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-database:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\30d7232bc02b85862a2452e7a3ac5ad4\transformed\jetified-media3-database-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-common:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\306c0e41f6ad01a19007e59494a8a605\transformed\jetified-media3-common-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-common:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\306c0e41f6ad01a19007e59494a8a605\transformed\jetified-media3-common-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer-hls:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\d5b07b300d812f39fa0781e87606e83f\transformed\jetified-media3-exoplayer-hls-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer-hls:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\d5b07b300d812f39fa0781e87606e83f\transformed\jetified-media3-exoplayer-hls-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer-dash:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\2d7e2fd0fcea9068515b69778d1a4091\transformed\jetified-media3-exoplayer-dash-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer-dash:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\2d7e2fd0fcea9068515b69778d1a4091\transformed\jetified-media3-exoplayer-dash-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer-rtsp:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\f0ad755c340852472ee79f49d8d438c4\transformed\jetified-media3-exoplayer-rtsp-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer-rtsp:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\f0ad755c340852472ee79f49d8d438c4\transformed\jetified-media3-exoplayer-rtsp-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer-smoothstreaming:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\de59e7dc2cdd836dafc2d55d5dc311df\transformed\jetified-media3-exoplayer-smoothstreaming-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer-smoothstreaming:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\de59e7dc2cdd836dafc2d55d5dc311df\transformed\jetified-media3-exoplayer-smoothstreaming-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\179db03358b27845b07fdd60ab47bd1a\transformed\jetified-media3-exoplayer-1.4.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\179db03358b27845b07fdd60ab47bd1a\transformed\jetified-media3-exoplayer-1.4.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.window:window:1.2.0] C:\Users\Admin\.gradle\caches\transforms-3\0bf7b5e2e6bd116ab35a55052ef41e52\transformed\jetified-window-1.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.window:window:1.2.0] C:\Users\Admin\.gradle\caches\transforms-3\0bf7b5e2e6bd116ab35a55052ef41e52\transformed\jetified-window-1.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.window:window-java:1.2.0] C:\Users\Admin\.gradle\caches\transforms-3\1bea569467ff317a295dd4845a05323f\transformed\jetified-window-java-1.2.0\AndroidManifest.xml:19:5-44
@@ -283,12 +244,6 @@ ADDED from [:url_launcher_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLU
 		ADDED from [:url_launcher_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-71
 	android:name
 		ADDED from [:url_launcher_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-74
-uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [androidx.media3:media3-common:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\306c0e41f6ad01a19007e59494a8a605\transformed\jetified-media3-common-1.4.1\AndroidManifest.xml:22:5-79
-MERGED from [androidx.media3:media3-exoplayer:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\179db03358b27845b07fdd60ab47bd1a\transformed\jetified-media3-exoplayer-1.4.1\AndroidManifest.xml:22:5-79
-MERGED from [androidx.media3:media3-exoplayer:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\179db03358b27845b07fdd60ab47bd1a\transformed\jetified-media3-exoplayer-1.4.1\AndroidManifest.xml:22:5-79
-	android:name
-		ADDED from [androidx.media3:media3-common:1.4.1] C:\Users\Admin\.gradle\caches\transforms-3\306c0e41f6ad01a19007e59494a8a605\transformed\jetified-media3-common-1.4.1\AndroidManifest.xml:22:22-76
 uses-library#androidx.window.extensions
 ADDED from [androidx.window:window:1.2.0] C:\Users\Admin\.gradle\caches\transforms-3\0bf7b5e2e6bd116ab35a55052ef41e52\transformed\jetified-window-1.2.0\AndroidManifest.xml:23:9-25:40
 	android:required
