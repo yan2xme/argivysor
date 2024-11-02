@@ -454,7 +454,7 @@ class DiseaseRepository {
 
     // Corn Diseases
     Disease(
-      name: 'Corn Gray Leaf Spot',
+      name: 'Corn Cercospora Leaf Spot',
       imagePath: 'assets/diseases/corn_cercospora_leaf_spot.jpg',
       severity: 'Moderate',
       treatments: [

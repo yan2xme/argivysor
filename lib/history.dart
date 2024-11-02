@@ -308,7 +308,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                       ),
                                     ),
                                     const Text(
-                                      'Accuracy',
+                                      'Confidence',
                                       style: TextStyle(
                                         fontSize: 12,
                                         color: Colors.grey,

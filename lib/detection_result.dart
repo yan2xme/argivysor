@@ -142,7 +142,7 @@ class _DetectionResultState extends State<DetectionResult> {
               ),
               const SizedBox(height: 10),
               Text(
-                'Accuracy: ${widget.accuracy.toStringAsFixed(2)}%',
+                'Confidence: ${widget.accuracy.toStringAsFixed(2)}%',
                 style: const TextStyle(
                   fontSize: 18,
                   fontStyle: FontStyle.italic,
