@@ -18,11 +18,11 @@ class HomePage extends StatefulWidget {
   final bool shouldSendPrompt; // Control initial prompt
 
   const HomePage({
-    Key? key,
+    super.key,
     this.disease,
     this.userImagePath,
     required this.shouldSendPrompt,
-  }) : super(key: key);
+  });
 
   @override
   HomePageState createState() => HomePageState();
@@ -45,9 +45,9 @@ class HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
 
   // For picking images
   final ImagePicker _picker = ImagePicker();
-  List<File> _selectedImages = []; // List to hold selected images
+  final List<File> _selectedImages = []; // List to hold selected images
 
-  TextEditingController _textController = TextEditingController();
+  final TextEditingController _textController = TextEditingController();
 
   @override
   bool get wantKeepAlive => true;
