@@ -4,3 +4,9 @@
 # Android Studio will place build artifacts here
 ios/Flutter/Generated.xcconfig
 *.apk
+/build/
+/.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutter-versions

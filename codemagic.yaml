@@ -6,6 +6,8 @@ workflows:
     environment:
       flutter: stable
     scripts:
+      - name: Clean build artifacts
+        fluttscript: flutter clean
       - name: Install dependencies
         script: |
           flutter pub get
