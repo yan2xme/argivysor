@@ -592,7 +592,7 @@ class DiseaseRepository {
           'Mealybug Wilt is caused by mealybug infestations that suck sap from pineapple plants, leading to wilting, stunted growth, and reduced fruit yield. Severe infestations can kill the plant.',
     ),
     Disease(
-      name: 'Pineapple Multiple Crop Disorder',
+      name: 'Pineapple Multiple Crown Disorder',
       imagePath: 'assets/diseases/pineapple_multiple_crop_disorder.jpg',
       severity: 'Moderate',
       treatments: [
@@ -608,7 +608,7 @@ class DiseaseRepository {
           'Multiple Crop Disorder in pineapples refers to a combination of various physiological and nutritional issues that affect plant growth and fruit development. Proper management can mitigate these disorders.',
     ),
     Disease(
-      name: 'Pineapple Root Rot',
+      name: 'Pineapple Root Rot Disease',
       imagePath: 'assets/diseases/pineapple_root_rot.jpg',
       severity: 'High',
       treatments: [
@@ -638,7 +638,7 @@ class DiseaseRepository {
           'This image represents healthy sugarcane plants with vibrant green leaves and robust stalks. The plants are free from any visible signs of disease or pest infestation.',
     ),
     Disease(
-      name: 'Sugarcane Mosaic Virus',
+      name: 'Sugarcane Mosaic',
       imagePath: 'assets/diseases/sugarcane_mosaic_virus.jpg',
       severity: 'Moderate',
       treatments: [

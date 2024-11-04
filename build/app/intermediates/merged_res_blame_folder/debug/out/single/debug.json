@@ -1,34 +1,34 @@
 [
     {
-        "merged": "com.example.classifier.app-merged_res-28:/mipmap-anydpi-v26_launcher_icon.xml.flat",
-        "source": "com.example.classifier.app-main-22:/mipmap-anydpi-v26/launcher_icon.xml"
+        "merged": "com.mnhs.agrivysor.app-merged_res-28:/mipmap-xxxhdpi_launcher_icon.png.flat",
+        "source": "com.mnhs.agrivysor.app-main-22:/mipmap-xxxhdpi/launcher_icon.png"
     },
     {
-        "merged": "com.example.classifier.app-merged_res-28:/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "com.example.classifier.app-main-22:/mipmap-xhdpi/ic_launcher.png"
+        "merged": "com.mnhs.agrivysor.app-merged_res-28:/drawable-v21_launch_background.xml.flat",
+        "source": "com.mnhs.agrivysor.app-main-22:/drawable-v21/launch_background.xml"
     },
     {
-        "merged": "com.example.classifier.app-merged_res-28:/mipmap-hdpi_launcher_icon.png.flat",
-        "source": "com.example.classifier.app-main-22:/mipmap-hdpi/launcher_icon.png"
+        "merged": "com.mnhs.agrivysor.app-merged_res-28:/mipmap-mdpi_launcher_icon.png.flat",
+        "source": "com.mnhs.agrivysor.app-main-22:/mipmap-mdpi/launcher_icon.png"
     },
     {
-        "merged": "com.example.classifier.app-merged_res-28:/mipmap-mdpi_launcher_icon.png.flat",
-        "source": "com.example.classifier.app-main-22:/mipmap-mdpi/launcher_icon.png"
+        "merged": "com.mnhs.agrivysor.app-merged_res-28:/mipmap-hdpi_launcher_icon.png.flat",
+        "source": "com.mnhs.agrivysor.app-main-22:/mipmap-hdpi/launcher_icon.png"
     },
     {
-        "merged": "com.example.classifier.app-merged_res-28:/drawable-v21_launch_background.xml.flat",
-        "source": "com.example.classifier.app-main-22:/drawable-v21/launch_background.xml"
+        "merged": "com.mnhs.agrivysor.app-merged_res-28:/mipmap-xxhdpi_launcher_icon.png.flat",
+        "source": "com.mnhs.agrivysor.app-main-22:/mipmap-xxhdpi/launcher_icon.png"
     },
     {
-        "merged": "com.example.classifier.app-merged_res-28:/mipmap-xxxhdpi_launcher_icon.png.flat",
-        "source": "com.example.classifier.app-main-22:/mipmap-xxxhdpi/launcher_icon.png"
+        "merged": "com.mnhs.agrivysor.app-merged_res-28:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.mnhs.agrivysor.app-main-22:/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.example.classifier.app-merged_res-28:/mipmap-xhdpi_launcher_icon.png.flat",
-        "source": "com.example.classifier.app-main-22:/mipmap-xhdpi/launcher_icon.png"
+        "merged": "com.mnhs.agrivysor.app-merged_res-28:/mipmap-anydpi-v26_launcher_icon.xml.flat",
+        "source": "com.mnhs.agrivysor.app-main-22:/mipmap-anydpi-v26/launcher_icon.xml"
     },
     {
-        "merged": "com.example.classifier.app-merged_res-28:/mipmap-xxhdpi_launcher_icon.png.flat",
-        "source": "com.example.classifier.app-main-22:/mipmap-xxhdpi/launcher_icon.png"
+        "merged": "com.mnhs.agrivysor.app-merged_res-28:/mipmap-xhdpi_launcher_icon.png.flat",
+        "source": "com.mnhs.agrivysor.app-main-22:/mipmap-xhdpi/launcher_icon.png"
     }
 ]

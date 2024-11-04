@@ -13,21 +13,21 @@
 13         to allow setting breakpoints, to provide hot reload, etc.
 14    -->
 15    <uses-permission android:name="android.permission.INTERNET" />
-15-->C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\debug\AndroidManifest.xml:6:5-66
-15-->C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\debug\AndroidManifest.xml:6:22-64
+15-->C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\debug\AndroidManifest.xml:6:5-66
+15-->C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\debug\AndroidManifest.xml:6:22-64
 16    <!-- Permission to access the camera -->
 17    <uses-permission android:name="android.permission.CAMERA" /> <!-- Permission to read from external storage -->
-17-->C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:5:5-64
-17-->C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:5:22-62
+17-->C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:5:5-64
+17-->C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:5:22-62
 18    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Permission to write to external storage (if needed) -->
-18-->C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:8:5-79
-18-->C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:8:22-77
+18-->C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:8:5-79
+18-->C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:8:22-77
 19    <uses-permission
-19-->C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:11:5-12:37
+19-->C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:11:5-12:37
 20        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-20-->C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:11:22-78
+20-->C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:11:22-78
 21        android:maxSdkVersion="28" />
-21-->C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:12:9-35
+21-->C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:12:9-35
 22    <!--
 23 Required to query activities that can process text, see:
 24         https://developer.android.com/training/package-visibility?hl=en and
@@ -36,16 +36,16 @@
 27         In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin.
 28    -->
 29    <queries>
-29-->C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:50:5-55:15
+29-->C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:50:5-55:15
 30        <intent>
-30-->C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:51:9-54:18
+30-->C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:51:9-54:18
 31            <action android:name="android.intent.action.PROCESS_TEXT" />
-31-->C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:52:13-72
-31-->C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:52:21-70
+31-->C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:52:13-72
+31-->C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:52:21-70
 32
 33            <data android:mimeType="text/plain" />
-33-->C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:53:13-50
-33-->C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:53:19-48
+33-->C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:53:13-50
+33-->C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\android\app\src\main\AndroidManifest.xml:53:19-48
 34        </intent>
 35    </queries>
 36
@@ -68,7 +68,7 @@
 47        android:icon="@mipmap/launcher_icon"
 48        android:label="AgriVysor" >
 49        <activity
-50            android:name="com.example.classifier.MainActivity"
+50            android:name="com.mnhs.agrivysor.MainActivity"
 51            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
 52            android:exported="true"
 53            android:hardwareAccelerated="true"
@@ -101,53 +101,53 @@
 80            android:value="2" />
 81
 82        <provider
-82-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:9-19:20
+82-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:9-19:20
 83            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-83-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-82
+83-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-82
 84            android:authorities="com.example.classifier.flutter.image_provider"
-84-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-74
+84-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-74
 85            android:exported="false"
-85-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-37
+85-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-37
 86            android:grantUriPermissions="true" >
-86-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-47
+86-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-47
 87            <meta-data
-87-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-18:75
+87-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-18:75
 88                android:name="android.support.FILE_PROVIDER_PATHS"
-88-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-67
+88-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-67
 89                android:resource="@xml/flutter_image_picker_file_paths" />
-89-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:18:17-72
+89-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:18:17-72
 90        </provider> <!-- Trigger Google Play services to install the backported photo picker module. -->
 91        <service
-91-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:21:9-33:19
+91-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:21:9-33:19
 92            android:name="com.google.android.gms.metadata.ModuleDependencies"
-92-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:22:13-78
+92-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:22:13-78
 93            android:enabled="false"
-93-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:23:13-36
+93-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:23:13-36
 94            android:exported="false" >
-94-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:24:13-37
+94-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:24:13-37
 95            <intent-filter>
-95-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:26:13-28:29
+95-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:26:13-28:29
 96                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
-96-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:27:17-94
-96-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:27:25-91
+96-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:27:17-94
+96-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:27:25-91
 97            </intent-filter>
 98
 99            <meta-data
-99-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:30:13-32:36
+99-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:30:13-32:36
 100                android:name="photopicker_activity:0:required"
-100-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:31:17-63
+100-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:31:17-63
 101                android:value="" />
-101-->[:image_picker_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:32:17-33
+101-->[:image_picker_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:32:17-33
 102        </service>
 103
 104        <activity
-104-->[:url_launcher_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-13:74
+104-->[:url_launcher_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-13:74
 105            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-105-->[:url_launcher_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-74
+105-->[:url_launcher_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-74
 106            android:exported="false"
-106-->[:url_launcher_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-37
+106-->[:url_launcher_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-37
 107            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-107-->[:url_launcher_android] C:\Users\Admin\Desktop\ALL Plants Disease\FLUTTERAPP\mamatay\argivysor\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-71
+107-->[:url_launcher_android] C:\Users\Admin\Desktop\ALL_Plants_Disease\FLUTTERAPP\mamatay\argivysor\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-71
 108
 109        <uses-library
 109-->[androidx.window:window:1.2.0] C:\Users\Admin\.gradle\caches\transforms-3\0bf7b5e2e6bd116ab35a55052ef41e52\transformed\jetified-window-1.2.0\AndroidManifest.xml:23:9-25:40

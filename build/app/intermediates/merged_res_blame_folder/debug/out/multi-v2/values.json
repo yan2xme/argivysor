@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.classifier.app-mergeDebugResources-26:/values/values.xml",
+            "outputFile": "com.mnhs.agrivysor.app-mergeDebugResources-26:/values/values.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\c104b32bbb7cc7aa280feaef5ba37be5\\transformed\\fragment-1.7.1\\res\\values\\values.xml",
@@ -56,25 +56,6 @@
                         "startOffsets": "7280",
                         "endColumns": "42",
                         "endOffsets": "7318"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Admin\\Desktop\\ALL Plants Disease\\FLUTTERAPP\\mamatay\\argivysor\\android\\app\\src\\main\\res\\values\\styles.xml",
-                    "from": {
-                        "startLines": "3,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "173,818",
-                        "endLines": "7,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "476,982"
-                    },
-                    "to": {
-                        "startLines": "165,169",
-                        "startColumns": "4,4",
-                        "startOffsets": "8569,8750",
-                        "endLines": "168,171",
-                        "endColumns": "12,12",
-                        "endOffsets": "8745,8914"
                     }
                 },
                 {
@@ -179,6 +160,25 @@
                         "startOffsets": "6314,7323",
                         "endColumns": "41,59",
                         "endOffsets": "6351,7378"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Admin\\Desktop\\ALL_Plants_Disease\\FLUTTERAPP\\mamatay\\argivysor\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "173,818",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "476,982"
+                    },
+                    "to": {
+                        "startLines": "165,169",
+                        "startColumns": "4,4",
+                        "startOffsets": "8569,8750",
+                        "endLines": "168,171",
+                        "endColumns": "12,12",
+                        "endOffsets": "8745,8914"
                     }
                 }
             ]

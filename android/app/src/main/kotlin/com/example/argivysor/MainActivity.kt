@@ -1,4 +1,4 @@
-package com.example.argivysor
+package com.mnhs.argivysor
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.classifier.app-mergeDebugResources-26:/values-et/values-et.xml",
+            "outputFile": "com.mnhs.agrivysor.app-mergeDebugResources-26:/values-et/values-et.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\b01abc1a646ae20a4d3a3336c1682ac9\\transformed\\core-1.13.1\\res\\values-et\\values-et.xml",
