@@ -278,20 +278,21 @@ class DiseaseRepository {
           'Banana plants can be affected by several insect pests, such as aphids, weevils, and beetles, which cause visible damage to the leaves and fruit, often leading to stunted growth or reduced yield.',
     ),
     Disease(
-      name: 'Banana Moko',
+      name: 'Banana Dry Leaf Disease',
       imagePath: 'assets/diseases/banana_moko.jpg',
       severity: 'High',
       treatments: [
-        'Immediate Action: Remove and destroy affected plants to prevent spread.',
-        'Chemical: There is no effective chemical treatment for Moko disease.',
-        'Hygiene: Disinfect tools to avoid cross-contamination.'
+        'Immediate Action: Remove and destroy heavily infected leaves to reduce the spread. Trim off affected areas as soon as they are noticed.',
+        'Chemical: Use appropriate fungicides if necessary, following agricultural guidelines.',
+        'Organic: Use neem oil to control early-stage fungal growth.',
+        'Biological: Introduce Trichoderma as a biocontrol agent.',
       ],
       preventiveMeasures: [
-        'Use disease-free planting material.',
-        'Avoid planting bananas in fields where Moko has previously occurred.'
+        'Plant disease-resistant banana varieties when possible.',
+        'Maintain proper plant spacing to allow for good air circulation, reducing moisture on leaves'
       ],
       description:
-          'Moko disease is caused by a bacterial infection that affects banana plants, leading to wilting, yellowing of leaves, and internal discoloration of the pseudostem. It spreads rapidly and can devastate entire plantations.',
+          'Banana Dry Leaf is a fungal disease that causes the leaves to dry out, turn brown, and develop spots. It often spreads in humid conditions, impacting the plant\'s health and productivity if not managed properly.',
     ),
     Disease(
       name: 'Banana Mosaic',
@@ -576,7 +577,7 @@ class DiseaseRepository {
           'This image represents a healthy pineapple plant with vibrant green leaves and mature, undamaged fruits. The plant is thriving under proper cultivation conditions.',
     ),
     Disease(
-      name: 'Pineapple Mealybug Wilt',
+      name: 'Pineapple Wilt Disease',
       imagePath: 'assets/diseases/pineapple_mealybug_wilt.jpg',
       severity: 'High',
       treatments: [
@@ -589,7 +590,7 @@ class DiseaseRepository {
         'Maintain plant hygiene to reduce pest habitats.'
       ],
       description:
-          'Mealybug Wilt is caused by mealybug infestations that suck sap from pineapple plants, leading to wilting, stunted growth, and reduced fruit yield. Severe infestations can kill the plant.',
+          'Wilt is caused by mealybug infestations that suck sap from pineapple plants, leading to wilting, stunted growth, and reduced fruit yield. Severe infestations can kill the plant.',
     ),
     Disease(
       name: 'Pineapple Multiple Crown Disorder',
@@ -686,7 +687,7 @@ class DiseaseRepository {
           'Sugarcane Rust appears as reddish-brown pustules on the leaves, leading to premature leaf drop and reduced photosynthetic capability. It thrives in humid environments with prolonged leaf wetness.',
     ),
     Disease(
-      name: 'Sugarcane Yellow',
+      name: 'Sugarcane Yellow Leaf Disease',
       imagePath: 'assets/diseases/sugarcane_yellow.jpg',
       severity: 'Moderate',
       treatments: [

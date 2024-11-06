@@ -127,7 +127,7 @@ class MainMenuState extends State<MainMenu>
                   ),
                   NavigationItem(
                     icon: Icons.language,
-                    label: 'Select Language',
+                    label: S.of(context).selectLanguage,
                     isSelected: false,
                     onTap: () => _showLanguageSelectionDialog(),
                   ),
@@ -145,7 +145,7 @@ class MainMenuState extends State<MainMenu>
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Select Language'),
+          title: Text(S.of(context).selectLanguage),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -196,13 +196,14 @@ class MainMenuState extends State<MainMenu>
                                     30, // Increased size for better visibility
                               ),
                               onPressed: _toggleRail,
-                              tooltip:
-                                  _isRailVisible ? 'Close Menu' : 'Open Menu',
+                              tooltip: _isRailVisible
+                                  ? S.of(context).closeMenu
+                                  : S.of(context).openMenu,
                             ),
                             const SizedBox(width: 10),
-                            const Text(
-                              'AgriVysor',
-                              style: TextStyle(
+                            Text(
+                              S.of(context).appName,
+                              style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.green,

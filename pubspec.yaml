@@ -29,7 +29,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -46,6 +45,7 @@ flutter_icons:
 
 flutter:
   uses-material-design: true
+  generate: true
 
   assets:
     - assets/labels.txt

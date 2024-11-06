@@ -1,7 +1,7 @@
 Banana Cordana
 Banana Healthy
 Banana Insect Pest
-Banana Moko
+Banana Dry Leaf Disease
 Banana Mosaic
 Banana Panama
 Banana Yellow Sigatoka
@@ -21,12 +21,12 @@ Pineapple Crown Rot Disease
 Pineapple Fruit Fasciation Disorder
 Pineapple Fruit Rot Disease
 Pineapple Healthy
-Pineapple Mealybug Wilt Disease
+Pineapple Wilt Disease
 Pineapple Multiple Crown Disorder
 Pineapple Root Rot Disease
 Sugarcane Healthy
 Sugarcane Mosaic
 Sugarcane Red Rot
 Sugarcane Rust
-Sugarcane Yellow
+Sugarcane Yellow Leaf Disease
 Unknown

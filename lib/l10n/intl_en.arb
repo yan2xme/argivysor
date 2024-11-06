@@ -1,11 +1,14 @@
 {
-    "@@locale": "en",
-    "appTitle": "AgriVysor",
-    "detect": "Detect",
-    "library": "Library",
-    "chatbot": "Chatbot",
-    "history": "History",
-    "goodDay": "Good Day!",
-    "detectDisease": "Let's detect the disease now!"
-  }
-  
+  "@@locale": "en",
+  "detect": "Detect",
+  "library": "Library",
+  "chatbot": "Chatbot",
+  "history": "History",
+  "goodDay": "Good Day!",
+  "detectDisease": "Detect plant diseases easily.",
+  "selectLanguage": "Select Language",
+  "closeMenu": "Close Menu",
+  "openMenu": "Open Menu",
+  "appName": "AgriVysor",
+  "magandangUmaga": "Good Morning!"
+}

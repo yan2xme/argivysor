@@ -22,13 +22,18 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "appTitle": MessageLookupByLibrary.simpleMessage("AgriVysor"),
+        "appName": MessageLookupByLibrary.simpleMessage("AgriVysor"),
         "chatbot": MessageLookupByLibrary.simpleMessage("Chatbot"),
+        "closeMenu": MessageLookupByLibrary.simpleMessage("Close Menu"),
         "detect": MessageLookupByLibrary.simpleMessage("Detect"),
         "detectDisease": MessageLookupByLibrary.simpleMessage(
-            "Let\'s detect the disease now!"),
+            "Detect plant diseases easily."),
         "goodDay": MessageLookupByLibrary.simpleMessage("Good Day!"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
-        "library": MessageLookupByLibrary.simpleMessage("Library")
+        "library": MessageLookupByLibrary.simpleMessage("Library"),
+        "magandangUmaga": MessageLookupByLibrary.simpleMessage("Good Morning!"),
+        "openMenu": MessageLookupByLibrary.simpleMessage("Open Menu"),
+        "selectLanguage":
+            MessageLookupByLibrary.simpleMessage("Select Language")
       };
 }

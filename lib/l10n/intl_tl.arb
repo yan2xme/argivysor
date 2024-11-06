@@ -1,11 +1,14 @@
 {
-    "@@locale": "tl",
-    "appTitle": "AgriVysor",
-    "detect": "Tuklasin",
-    "library": "Aklatan",
-    "chatbot": "Chatbot",
-    "history": "Kasaysayan",
-    "goodDay": "Magandang Araw!",
-    "detectDisease": "Tuklasin na natin ang sakit!"
-  }
-  
+  "@@locale": "tl",
+  "detect": "Mag-detect",
+  "library": "Silid-Aklatan",
+  "chatbot": "Chatbot",
+  "history": "Kasaysayan",
+  "goodDay": "Magandang Araw!",
+  "detectDisease": "Madaling mag-detect ng mga sakit ng halaman.",
+  "selectLanguage": "Piliin ang Wika",
+  "closeMenu": "Isara ang Menu",
+  "openMenu": "Buksan ang Menu",
+  "appName": "AgriVysor",
+  "magandangUmaga": "Magandang Umaga!"
+}

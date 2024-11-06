@@ -14,11 +14,11 @@ void main() {
     apiKey: GEMINI_API_KEY,
   );
 
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  MyApp({Key? key}) : super(key: key);
 
   static void setLocale(BuildContext context, Locale newLocale) {
     _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
@@ -39,12 +39,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
-  void didChangeDependencies() {
-    // Optionally load saved locale from persistent storage here
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'AgriVysor',
@@ -60,9 +54,9 @@ class _MyAppState extends State<MyApp> {
       ],
       initialRoute: '/', // Default route is the splash screen
       routes: {
-        '/': (context) => const SplashScreen(),
+        '/': (context) => SplashScreen(),
         '/main_menu': (context) => MainMenu(
-              setLocale: (Locale) {},
+              setLocale: setLocale,
             ),
       },
     );

@@ -50,16 +50,6 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `AgriVysor`
-  String get appTitle {
-    return Intl.message(
-      'AgriVysor',
-      name: 'appTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Detect`
   String get detect {
     return Intl.message(
@@ -110,15 +100,73 @@ class S {
     );
   }
 
-  /// `Let's detect the disease now!`
+  /// `Detect plant diseases easily.`
   String get detectDisease {
     return Intl.message(
-      'Let\'s detect the disease now!',
+      'Detect plant diseases easily.',
       name: 'detectDisease',
       desc: '',
       args: [],
     );
   }
+
+  /// `Select Language`
+  String get selectLanguage {
+    return Intl.message(
+      'Select Language',
+      name: 'selectLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close Menu`
+  String get closeMenu {
+    return Intl.message(
+      'Close Menu',
+      name: 'closeMenu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open Menu`
+  String get openMenu {
+    return Intl.message(
+      'Open Menu',
+      name: 'openMenu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AgriVysor`
+  String get appName {
+    return Intl.message(
+      'AgriVysor',
+      name: 'appName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Good Morning!`
+  String get magandangUmaga {
+    return Intl.message(
+      'Good Morning!',
+      name: 'magandangUmaga',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String? get classificationError => null;
+
+  String? get noDiseaseDetected => null;
+
+  String? get noDetectionMessage => null;
+
+  String? get ok => null;
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

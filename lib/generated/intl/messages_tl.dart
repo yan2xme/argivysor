@@ -22,13 +22,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "appTitle": MessageLookupByLibrary.simpleMessage("AgriVysor"),
+        "appName": MessageLookupByLibrary.simpleMessage("AgriVysor"),
         "chatbot": MessageLookupByLibrary.simpleMessage("Chatbot"),
-        "detect": MessageLookupByLibrary.simpleMessage("Tuklasin"),
+        "closeMenu": MessageLookupByLibrary.simpleMessage("Isara ang Menu"),
+        "detect": MessageLookupByLibrary.simpleMessage("Mag-detect"),
         "detectDisease": MessageLookupByLibrary.simpleMessage(
-            "Tuklasin na natin ang sakit!"),
+            "Madaling mag-detect ng mga sakit ng halaman."),
         "goodDay": MessageLookupByLibrary.simpleMessage("Magandang Araw!"),
         "history": MessageLookupByLibrary.simpleMessage("Kasaysayan"),
-        "library": MessageLookupByLibrary.simpleMessage("Aklatan")
+        "library": MessageLookupByLibrary.simpleMessage("Silid-Aklatan"),
+        "magandangUmaga":
+            MessageLookupByLibrary.simpleMessage("Magandang Umaga!"),
+        "openMenu": MessageLookupByLibrary.simpleMessage("Buksan ang Menu"),
+        "selectLanguage":
+            MessageLookupByLibrary.simpleMessage("Piliin ang Wika")
       };
 }
